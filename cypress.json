@@ -1,0 +1,6 @@
+{
+
+    "baseUrl": "https://api.thecatapi.com/v1/",
+    "viewportWidth": 1280,
+    "viewportHeight": 720
+}
