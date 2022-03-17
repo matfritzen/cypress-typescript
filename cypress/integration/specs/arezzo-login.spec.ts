@@ -11,16 +11,21 @@ const password = 'Abcde@123456';
 context('Login in Arezzo', () => {
 
     it('Type username, password and click Continuar button', () => {
+        // Talvez seja melhor em before() ou beforeEach()
         cy.visit('https://www.arezzo.com.br/login')
 
         arezzoLogin.userField().type(username);
         arezzoLogin.passwordField().click().type(password);
-        arezzoLogin.continuarButton().click();
-
+        arezzoLogin.continuarButton()
+            .click()
+            .should('not.exist');
+        
+        // Testes sem assetion sao considerado anti-pattern. Estes dois testes podem ser um end-to-end
     });
 
     it('Assert that the icon and the text with the name of the user are visible', () => {
-
+        
+        // O que acontece aqui se o teste pra login falhar? Testes devem ser independentes.
         arezzoMyAccount.userNameLink().should('be.visible');
         arezzoMyAccount.userNameLink().should('have.text', "Olá, Matheus");
 
