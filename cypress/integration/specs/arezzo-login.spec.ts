@@ -4,7 +4,6 @@ import { ArezzoMyAccount } from "../../page-objects/arezzo-my-account-page";
 const arezzoLogin = new ArezzoLogin();
 const arezzoMyAccount = new ArezzoMyAccount();
 
-// Nao é 
 const username = 'mfritzencypresstest@gmail.com';
 const password = 'Abcde@123456';
 
