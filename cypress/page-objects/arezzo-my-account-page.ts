@@ -4,11 +4,11 @@ export class ArezzoMyAccount{
 
 
 userNameLink(){
-    return cy.get('.arz-header-user-firstname').first();
+    return cy.get('.arz-header-user-firstname');
 }
 
 userNameTitle(){
-    return cy.get('.arz-page-title').first();
+    return cy.get('.arz-page-title');
 }
 
 }
