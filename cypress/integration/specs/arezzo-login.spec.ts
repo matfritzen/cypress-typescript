@@ -1,25 +1,30 @@
+import { data } from "cypress/types/jquery";
 import { ArezzoLogin } from "../../page-objects/arezzo-login.page";
 import { ArezzoMyAccount } from "../../page-objects/arezzo-my-account-page";
 
 const arezzoLogin = new ArezzoLogin();
 const arezzoMyAccount = new ArezzoMyAccount();
 
-const username = 'mfritzencypresstest@gmail.com';
-const password = 'Abcde@123456';
-
-
 context('Login in Arezzo', () => {
 
-    it('Type username, password and click Continuar button', () => {
+    before( function (){
         cy.visit('https://www.arezzo.com.br/login')
+        
+        cy.fixture('login').then((data) => {
+            this.data = data;
+        })
 
-        arezzoLogin.userField().type(username);
-        arezzoLogin.passwordField().click().type(password);
+    })
+
+    it('Login with a valid User', function () {
+
+        arezzoLogin.userField().type(this.data.username);
+        arezzoLogin.passwordField().click().type(this.data.passw);
         arezzoLogin.continuarButton().click();
 
-    });
-
-    it('Assert that the icon and the text with the name of the user are visible', () => {
+        arezzoLogin.continuarButton()
+        .click()
+        .should('not.exist')
 
         arezzoMyAccount.userNameLink().should('be.visible');
         arezzoMyAccount.userNameLink().should('have.text', "Olá, Matheus");
@@ -27,4 +32,5 @@ context('Login in Arezzo', () => {
         arezzoMyAccount.userNameTitle().should('be.visible');
 
     });
+
 });
