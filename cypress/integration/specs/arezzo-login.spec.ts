@@ -18,13 +18,17 @@ context('Login in Arezzo', () => {
 
     it('Login with a valid User', function () {
 
+        arezzoLogin.closePopUpButton().click();
+        
+        arezzoLogin.closePopUpButton().
+        should('not.exist');
+
         arezzoLogin.userField().type(this.data.username);
-        arezzoLogin.passwordField().click().type(this.data.passw);
+        arezzoLogin.passwordField().click().type(this.data.password);
         arezzoLogin.continuarButton().click();
 
         arezzoLogin.continuarButton()
-        .click()
-        .should('not.exist')
+        .should('not.exist');
 
         arezzoMyAccount.userNameLink().should('be.visible');
         arezzoMyAccount.userNameLink().should('have.text', "Olá, Matheus");
